@@ -4,13 +4,12 @@ class IntParser{
      * Return a  Random number within a min max value
      */
     static func random(_ min:Int, _ max:Int)->Int{//returns an integer between 0 - x
-        let randomNr:Int = Int(arc4random_uniform(UInt32(max)) + UInt32(min))
-        return randomNr
+        return Int(arc4random_uniform(UInt32(max)) + UInt32(min))
     }
     /**
      * Returns a normalized integer value
-     * NOTE: great for iterating int arrays
-     * NOTE: can be used for looping items in an array
+     * NOTE: Great for iterating int arrays
+     * NOTE: Can be used for looping items in an array
      * EXAMPLE:
      * print(IntParser.normalize(3, 7))//3
      * print(IntParser.normalize(-3, 7))//4
