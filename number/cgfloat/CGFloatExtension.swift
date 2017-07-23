@@ -15,7 +15,7 @@ extension CGFloat {
     var positive:CGFloat{return abs(self)}//new
     var negative:CGFloat{return -abs(self)}//new
     func clip(_ min:CGFloat,_ max:CGFloat)->CGFloat{return NumberParser.clip(self, min, max)}/*Convenince*/
-    func interpolate(_ to:CGFloat, _ fraction:CGFloat) -> CGFloat{return CGFloatParser.interpolate(self,to,fraction)}
+    func interpolate(_ to:CGFloat, _ scalar:CGFloat) -> CGFloat{return CGFloatParser.interpolate(self,to,scalar)}
     func roundTo(_ closest:CGFloat)->CGFloat{return CGFloatModifier.roundTo(self, closest)}/*Convenince*/
 }
 extension Sequence where Iterator.Element == CGFloat {
@@ -70,7 +70,8 @@ infix operator %%/*<--infix operator is required for custom infix char combos*/
  * print(4.3 %% 2.1) // 0.0999999999999996
  * print(4 %% 4)     // 0
  * NOTE: The first print returns 2, rather than 12/5 or 2.4, because the modulo (%) operator returns only the remainder. The second trace returns 0.0999999999999996 instead of the expected 0.1 because of the limitations of floating-point accuracy in binary computing.
- * FUN-FACT: UInt still has regular modulo support with the % char
+ * NOTE: Int's and UInt can still use single %
+ * NOTE: there is also .remainder which supports returning negatives as oppose to truncatingRemainder (aka the old %) which returns only positive.
  */
 public func %% (left:CGFloat, right:CGFloat) -> CGFloat {
     return left.truncatingRemainder(dividingBy: right)
