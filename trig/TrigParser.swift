@@ -19,8 +19,8 @@ class TrigParser {
      */
     static func normalize(_ angle:CGFloat)->CGFloat {
         var angle = angle
-        while (angle < 0) {angle += π*2}
-        while (angle >= π*2) {angle -= π*2}
+        while angle < 0 {angle += π*2}
+        while angle >= π*2 {angle -= π*2}
         return angle
     }
     /**
@@ -49,8 +49,8 @@ class TrigParser {
      * PARAM: theta: An radian in degrees typically 0 - Math.PI*2
      */
     static func normalize2(_ angle:CGFloat)->CGFloat {
-        if(angle < -π){ return π + (angle %% π)}
-        if(angle > π){ return -π + (angle %% π)}
+        if angle < -π { return π + (angle %% π)}
+        if angle > π { return -π + (angle %% π)}
         return angle
     }
     /**
@@ -91,7 +91,7 @@ class TrigParser {
      * TODO: replace direction with boolean: isClockWise
      */
     static func angleSpan(_ a:CGFloat, _ b:CGFloat, _ direction:String = Trig.clockWise) -> CGFloat{
-        if(direction == Trig.clockWise) {return Trig.normalize(b + (Trig.pi*2-a))}
+        if direction == Trig.clockWise {return Trig.normalize(b + (Trig.pi*2-a))}
         return Trig.normalize(a + (Trig.pi*2-b))/*Direction.COUNTER_CLOCK_WISE*/
     }
     /**
@@ -100,6 +100,15 @@ class TrigParser {
     static func angleSpan2(_ a:CGFloat, _ b:CGFloat, _ isClockWise:Bool = true) -> CGFloat {
         return angleSpan(a, b, isClockWise ? Trig.clockWise : Trig.counterClockWise)
     }
+    /**
+    * Angle span
+    */
+   static func angleSpan3(pivot:CGPoint,a:CGPoint,b:CGPoint)->CGFloat{
+      let angle1 = Trig.angle(pivot, a)
+      let angle2 = Trig.angle(pivot, b)
+      let A = abs(Trig.difference(angle1, angle2))
+      return A
+   }
     /**
      * Returns a flipped angle between -3.14 and 3.14 (an angle that is flipped in the x or y axis)
      * PARAM: angle between -3.14 and +3.14 (if you want to use angles from 0 to 6.28 use Angle.normalize2 on the PARAM: angle first)

@@ -15,9 +15,9 @@ class TrigAsserter {
      */
     static func isClockWiseByAngle(_ a:CGFloat,_ b:CGFloat)->Bool {
         let difference:CGFloat = TrigParser.difference(a, b)
-        if(difference == Trig.pi || difference == -Trig.pi){
+        if difference == Trig.pi || difference == -Trig.pi {
             return true
-        }else if(difference == 0) {
+        }else if difference == 0 {
             return false
         }else {
             return difference > 0
@@ -54,7 +54,7 @@ class TrigAsserter {
      * NOTE: normalize between 0 and 2PI since -PI and PI is co-dir but not equalTODO: but 0 and 2PI is also co-dir but not equal, fix it some other way
      */
     static func isCodirectional(_ a:CGFloat,_ b:CGFloat) -> Bool {
-        if((a == π && b == -π) || (a == -π && b == π)) {return true}
+        if (a == π && b == -π) || (a == -π && b == π) {return true}
         else {return a == b}
     }
     static func isNormal(_ angle1:CGFloat,_ angle2:CGFloat) -> Bool {
@@ -63,7 +63,7 @@ class TrigAsserter {
     /**
      * Vectors lay on the on a line that is normal to the paralell or anti-parallel angles of both vectors
      * NOTE: think the shape of the character "H" the two points connecting the bridge between the vertical lines are colliniear and normal
-     * TODO:  colliniarNormal is probably not the correct term for this construction, try to find the correct name and construction later
+     * TODO: ⚠️️ colliniarNormal is probably not the correct term for this construction, try to find the correct name and construction later
      */
     static func isCollinearNormal(_ p1:CGPoint,_ p2:CGPoint, _ angle1:CGFloat,_ angle2:CGFloat) -> Bool {
         return isParallel(angle1, angle2) && isNormal(angle1, Trig.angle(p1, p2))
