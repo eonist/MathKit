@@ -39,6 +39,23 @@ class TriangleMath {
         let a:CGFloat = TriangleMath.cACToa2(c, A, π/2)
         return a
     }
+    /**
+    * ortho point (Perpendicular on a line from a given point)
+    */
+   static func orthoPoint(p:CGPoint,line:(a:CGPoint,b:CGPoint)) -> CGPoint{
+      let (x1,x2,x3,y1,y2,y3)  = (line.a.x,line.b.x,p.x,line.a.y,line.b.y,p.y)
+      // first convert line to normalized unit vector
+      var dx = x2 - x1;
+      var dy = y2 - y1;
+      let mag = sqrt(dx*dx + dy*dy)
+      dx /= mag
+      dy /= mag
+      // translate the point and get the dot product
+      let lambda = (dx * (x3 - x1)) + (dy * (y3 - y1))
+      let x4 = (dx * lambda) + x1
+      let y4 = (dy * lambda) + y1
+      return .init(x:x4,y:y4)
+   }
 }
 
 //altitudes(self):"""The altitudes of the triangle. An altitude of a triangle is a segment through a vertex,perpendicular to the opposite side, with length being the, height of the vertex measured from the line containing the side.
